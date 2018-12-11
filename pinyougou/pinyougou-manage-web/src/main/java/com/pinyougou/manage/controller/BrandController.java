@@ -3,6 +3,7 @@ package com.pinyougou.manage.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.sellergoods.service.BrandService;
+import com.pinyougou.vo.PageResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,15 @@ public class BrandController {
     private BrandService brandService;
 
     /**
+     * 分页
+     */
+    @GetMapping("/testPage")
+    public List<TbBrand> testPage(Integer page,Integer rows){
+        //return brandService.testPage(page,rows);
+        return (List<TbBrand>) brandService.findPage(page, rows).getRows();
+    }
+
+    /**
      * 查询品牌列表
      * @return 品牌列表json格式字符串
      */
@@ -30,7 +40,14 @@ public class BrandController {
 //    @ResponseBody
     @GetMapping("/findAll")
     public List<TbBrand> findAll(){
-        return brandService.queryAll();
+        //return brandService.queryAll();
+        return brandService.findAll();
+    }
+
+    @GetMapping("/findPage")
+    public PageResult findPage(@RequestParam(value = "page",defaultValue = "1")Integer page,
+                               @RequestParam(value = "rows",defaultValue = "10")Integer rows){
+        return brandService.findPage(page,rows);
     }
 
 }
