@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Date:2018/12/9
@@ -55,5 +56,10 @@ public class BrandServiceImpl extends BaseServiceImpl<TbBrand> implements BrandS
         PageInfo<TbBrand> pageInfo=new PageInfo<>(list);
 
         return new PageResult(pageInfo.getTotal(),pageInfo.getList());
+    }
+
+    @Override
+    public List<Map<String, Object>> selectOptionList() {
+        return brandMapper.selectOptionList();
     }
 }

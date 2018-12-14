@@ -8,6 +8,7 @@ import com.pinyougou.vo.Result;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Date:2018/12/9
@@ -114,6 +115,15 @@ public class BrandController {
     public PageResult findPage(@RequestParam(value = "page",defaultValue = "1")Integer page,
                                @RequestParam(value = "rows",defaultValue = "10")Integer rows){
         return brandService.findPage(page,rows);
+    }
+
+    /**
+     * 查询品牌列表,返回的数据格式符合select2格式
+     * @return
+     */
+    @GetMapping("/selectOptionList")
+    public List<Map<String , Object>> selectOptionList(){
+        return brandService.selectOptionList();
     }
 
 }

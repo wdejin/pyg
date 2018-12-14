@@ -5,6 +5,7 @@ import com.pinyougou.service.BaseService;
 import com.pinyougou.vo.PageResult;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Date:2018/12/9
@@ -21,4 +22,6 @@ public interface BrandService extends BaseService<TbBrand> {
      List<TbBrand> testPage(Integer page, Integer rows);
 
     PageResult search(TbBrand brand, Integer page, Integer rows);
+
+    List<Map<String, Object>> selectOptionList();
 }
